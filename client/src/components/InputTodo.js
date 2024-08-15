@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 
 const InputTodo = () => {
-  return (
-    <div>InputTodo</div>
-  )
+   const [description, setDescription] = useState("")
+   return (
+       <div>
+           <h1 className='text-center mt-5'>Pern Todo List</h1>
+           <form className='d-flex mt-5'>
+               <input type="text" className='form-control'
+                   value={description}
+                   onChange={e => setDescription(e.target.value)} />
+               <button className='btn btn-success'>Add</button>
+           </form>
+       </div>
+   )
 }
+
 
 export default InputTodo
