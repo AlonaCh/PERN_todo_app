@@ -25,6 +25,24 @@ const ListTodos = () => {
 
 
 
+// deleteTodo
+
+
+   const deleteTodo = async (id) => {
+       try {
+           const deleteTodo = await fetch(`http://localhost:5001/todos/${id}`, {
+               method: "DELETE"
+           })
+
+
+           setTodos(todos.filter(todo => todo.todo_id !== id))
+
+
+       } catch (err) {
+           console.error(err.message)
+       }
+   }
+
 
    return (
        <div>
@@ -45,12 +63,12 @@ const ListTodos = () => {
 
 
                    {todos.map(todo => (
-                       <tr>
+                       <tr key={todo.todo_id}>
 
 
                            <td>{todo.description}</td>
                            <td>Edit</td>
-                           <td>Delete</td>
+                           <td><button className="btn btn-danger" onClick={() => deleteTodo(todo.todo_id)}>Delete</button></td>
                        </tr>)
                    )}
                </tbody>
