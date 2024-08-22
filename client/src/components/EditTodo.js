@@ -1,78 +1,68 @@
-import React from 'react'
+
+import React, { useState } from 'react';
 
 
-const EditTodo = () => {
+const EditTodo = ({ todo }) => {
+   const [showModal, setShowModal] = useState(false);
+
+
    return (
        <>
            {/* Button to open the modal */}
            <button
                type="button"
-               class="btn btn-warning"
-               data-toggle="modal"
-
-
+               className="btn btn-warning"
+               onClick={() => setShowModal(true)}
            >
                Edit
            </button>
 
 
-
-
-           <div
-               class="modal"
-           // id={`id${todo.todo_id}`}
-           // onClick={() => setDescription(todo.description)}
-           >
-               <div class="modal-dialog">
-                   <div class="modal-content">
-                       <div class="modal-header">
-                           <h4 class="modal-title">Edit Todo</h4>
-                           <button
-                               type="button"
-                               class="close"
-                               data-dismiss="modal"
-                           // onClick={() => setDescription(todo.description)}
-                           >
-
-
-                           </button>
-                       </div>
-
-
-                       <div class="modal-body">
-                           <input
-                               type="text"
-                               className="form-control"
-                           // value={description}
-                           // onChange={e => setDescription(e.target.value)}
-                           />
-                       </div>
-
-
-                       <div class="modal-footer">
-                           <button
-                               type="button"
-                               class="btn btn-warning"
-                               data-dismiss="modal"
-                           // onClick={e => updateDescription(e)}
-                           >
-                               Edit
-                           </button>
-                           <button
-                               type="button"
-                               class="btn btn-danger"
-                               data-dismiss="modal"
-                           // onClick={() => setDescription(todo.description)}
-                           >
-                               Close
-                           </button>
+           {showModal && (
+               <div className="modal show d-block" tabIndex="-1" role="dialog">
+                   <div className="modal-dialog" role="document">
+                       <div className="modal-content">
+                           <div className="modal-header">
+                               <h5 className="modal-title">Edit Todo</h5>
+                               <button
+                                   type="button"
+                                   className="close"
+                                   onClick={() => setShowModal(false)}
+                               >
+                                   <span>&times;</span>
+                               </button>
+                           </div>
+                           <div className="modal-body">
+                               <input
+                                   type="text"
+                                   className="form-control"
+                               // value={description}
+                               // onChange={e => setDescription(e.target.value)}
+                               />
+                           </div>
+                           <div className="modal-footer">
+                               <button
+                                   type="button"
+                                   className="btn btn-warning"
+                                   onClick={() => setShowModal(false)}
+                               >
+                                   Edit
+                               </button>
+                               <button
+                                   type="button"
+                                   className="btn btn-danger"
+                                   onClick={() => setShowModal(false)}
+                               >
+                                   Close
+                               </button>
+                           </div>
                        </div>
                    </div>
                </div>
-           </div>
+           )}
        </>
-   )
-}
+   );
+};
 
 
-export default EditTodo
+export default EditTodo;
